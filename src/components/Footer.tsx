@@ -26,7 +26,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href={isSignedIn ? '/classifier' : '/sign-in'} className="text-gray-400 hover:text-white transition-colors">
+                <Link href={isSignedIn ? '/classifier' : '/auth/sign-in'} className="text-gray-400 hover:text-white transition-colors">
                   {isSignedIn ? 'Classify' : 'Sign In'}
                 </Link>
               </li>
