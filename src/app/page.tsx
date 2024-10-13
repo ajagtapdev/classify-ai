@@ -26,7 +26,7 @@ const Page = () => {
               Welcome to <span className="text-blue-600">Classify.ai</span>
             </h2>
             <p className="text-xl mb-10 text-gray-600 max-w-2xl mx-auto animate-fade-in-up">
-              Your trusted partner in AI-driven data classification for government documents.
+              An AI-driven solution for government document classification.
             </p>
             <div className="flex justify-center">
               <SignedOut>
@@ -42,7 +42,7 @@ const Page = () => {
                   asChild 
                   className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl animate-fade-in-up"
                 >
-                  <Link href="/classifier">10x Document Classification Today</Link>
+                  <Link href="/classifier">Open Classifier</Link>
                 </Button>
               </SignedIn>
             </div>
@@ -53,7 +53,7 @@ const Page = () => {
             <div className="max-w-4xl mx-auto text-center px-4">
               <h3 className="text-3xl font-bold mb-6">Revolutionizing Government Document Classification</h3>
               <p className="text-xl mb-8">
-                Classify.ai leverages cutting-edge artificial intelligence to streamline the process of classifying sensitive government documents. Our platform ensures accuracy, efficiency, and the highest level of security, allowing government agencies to focus on what matters most.
+                Classify.ai leverages cutting-edge artificial intelligence based technologies like LangChain and Pinecone vector database to streamline the process of classifying sensitive government documents. Our platform ensures accuracy and efficiency through modern machine learning frameworks, allowing government agencies to focus on what matters most.
               </p>
               <div className="flex justify-center items-center">
                 <button onClick={scrollToSection} className="text-white hover:text-gray-200 transition duration-300 ease-in-out">
@@ -71,7 +71,7 @@ const Page = () => {
               <FeatureCard 
                 icon={Shield}
                 title="Secure and Reliable"
-                description="Built with government-grade security protocols."
+                description="Built with government-grade security protocols in mind."
                 content="Ensure the safety and integrity of classified data through our advanced AI solutions."
               />
               <FeatureCard 
@@ -84,7 +84,7 @@ const Page = () => {
                 icon={Headset}
                 title="Customer Support"
                 description="Dedicated customer support for government agencies."
-                content="Our experienced team is available around the clock to assist with your needs."
+                content="Our team is available around the clock to assist with your needs."
               />
             </div>
           </section>
