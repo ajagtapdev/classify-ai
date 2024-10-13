@@ -6,7 +6,7 @@ export const metadata = {
   title: "Classify",
   description: "Classify.ai",
   icons: {
-  icon: "/icon.ico",
+  icon: "/favicon.ico",
   },
  
 };
