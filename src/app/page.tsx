@@ -8,6 +8,13 @@ import { SignedOut, SignedIn } from '@clerk/nextjs';
 import FeatureCard from '../components/FeatureCard';
 
 const Page = () => {
+  const scrollToSection = () => {
+    const targetSection = document.getElementById('features-section');
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100">
       <Navbar />
@@ -50,14 +57,16 @@ const Page = () => {
                 Classify.ai leverages cutting-edge artificial intelligence to streamline the process of classifying sensitive government documents. Our platform ensures accuracy, efficiency, and the highest level of security, allowing government agencies to focus on what matters most.
               </p>
               <div className="flex justify-center items-center">
-                <ArrowDown className="w-8 h-8 animate-bounce" />
+                <button onClick={scrollToSection} className="text-white hover:text-gray-200 transition duration-300 ease-in-out">
+                  <ArrowDown className="w-8 h-8 animate-bounce" />
+                </button>
                 <span className="ml-2 text-lg font-semibold">Discover Our Features</span>
               </div>
             </div>
           </section>
 
           {/* Features Section */}
-          <section className="py-5">
+          <section id="features-section" className="py-5">
             <h3 className="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Classify.ai?</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               <FeatureCard 
