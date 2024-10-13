@@ -16,7 +16,7 @@ const Page = () => {
           
           {/* Welcome Section */}
           <section className="pb-24 pt-40 text-center">
-            <h2 className="text-5xl font-extrabold mb-6 text-blue-900 animate-fade-in-down">
+            <h2 className="text-5xl mb-6 text-blue-900 animate-fade-in-down">
               Welcome to <span className="text-blue-600">Classify.ai</span>
             </h2>
             <p className="text-xl mb-10 text-gray-600 max-w-2xl mx-auto animate-fade-in-up">
@@ -36,7 +36,7 @@ const Page = () => {
                   asChild 
                   className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl animate-fade-in-up"
                 >
-                  <Link href="/classifier">Search</Link>
+                  <Link href="/classifier">10x Document Classification Today</Link>
                 </Button>
               </SignedIn>
             </div>
