@@ -91,7 +91,7 @@ const Page = () => {
         <div className="flex flex-col items-center justify-center px-4 py-20">
           <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full border border-blue-200 flex flex-col items-center space-y-4">
             <h2 className="text-2xl text-center pt-4">{classification}</h2>
-            <Dialog>
+            {examples && <Dialog>
               <DialogTrigger asChild>
                 <Button className="w-fit bg-transparent text-black hover:bg-transparent shadow-none transition-colors text-sm underline-offset-4 underline font-semibold">View Reasoning</Button>
               </DialogTrigger>
@@ -125,6 +125,7 @@ const Page = () => {
                 </Table>
               </DialogContent>
             </Dialog>
+  }
             <Button
               type="button"
               className="w-fit bg-blue-600 hover:bg-blue-700 text-white transition-colors text-lg"
