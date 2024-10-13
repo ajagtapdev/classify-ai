@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -25,23 +24,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useUser } from "@clerk/nextjs"; 
-import { useRouter } from "next/navigation"; 
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
-// Define the form schema using Zod
 const formSchema = z.object({
   textInput: z
     .string()
     .min(1, { message: "Please enter an input" })
     .max(200, { message: "You cannot enter more than 200 characters" })
-    .regex(/^[a-zA-Z0-9 ]*$/, { message: "Only alphanumeric characters are allowed." }),
 });
 
-export function InputDemo() {
-  const { isSignedIn } = useUser(); 
-  const router = useRouter(); 
+// Define the component as a default export
+const Page = () => {
+  const { isSignedIn } = useUser();
+  const router = useRouter();
 
-  // Redirect to /sign-in if the user is not signed in
   useEffect(() => {
     if (!isSignedIn) {
       router.push("/auth/sign-in");
@@ -55,12 +60,11 @@ export function InputDemo() {
     },
   });
 
-  const { reset } = form; // Use the reset function from react-hook-form
+  const { reset } = form;
   const [loading, setLoading] = useState(false);
   const [classification, setClassification] = useState("");
-  const [examples, setExamples] = useState<string[]>([]); // Specify the type for examples
+  const [examples, setExamples] = useState<string[]>([]);
 
-  // Handle form submission
   const onSubmit = async (values: { textInput: string }) => {
     setLoading(true);
     const response = await classifyText(values.textInput.trim());
@@ -69,7 +73,6 @@ export function InputDemo() {
     setLoading(false);
   };
 
-  // Show loading spinner while processing
   if (loading) {
     return (
       <div className="min-h-screen bg-blue-50 text-gray-900 flex flex-col items-center">
@@ -81,7 +84,6 @@ export function InputDemo() {
     );
   }
 
-  // If classification is available, show results
   if (classification) {
     return (
       <div className="min-h-screen bg-blue-50 text-gray-900 flex flex-col justify-center">
@@ -89,7 +91,7 @@ export function InputDemo() {
         <div className="flex flex-col items-center justify-center px-4 py-20">
           <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full border border-blue-200 flex flex-col items-center space-y-4">
             <h2 className="text-2xl text-center pt-4">{classification}</h2>
-            <Dialog>
+            {examples && <Dialog>
               <DialogTrigger asChild>
                 <Button className="w-fit bg-transparent text-black hover:bg-transparent shadow-none transition-colors text-sm underline-offset-4 underline font-semibold">View Reasoning</Button>
               </DialogTrigger>
@@ -97,21 +99,40 @@ export function InputDemo() {
                 <DialogHeader>
                   <DialogTitle>View Reasoning</DialogTitle>
                   <DialogDescription className="bg-white">
-                    Check out the sample data that inspired our decision
+                    Check out the simulated classified data that inspired our decision.
                   </DialogDescription>
                 </DialogHeader>
-                {examples.map((example, index) => (
-                  <h2 key={index} className="text-md">{example}</h2>
-                ))}
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Text</TableHead>
+                      <TableHead>Classification</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {examples.map((example, index) => {
+                      const splitExample = example.split(' (');
+                      const text = splitExample[0];
+                      const classification = splitExample[1].split(')')[0];
+                      return (
+                        <TableRow key={index}>
+                          <TableCell>{text}</TableCell>
+                          <TableCell>{classification}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
               </DialogContent>
             </Dialog>
+  }
             <Button
-              type="button" // Change type to button to prevent form submission
+              type="button"
               className="w-fit bg-blue-600 hover:bg-blue-700 text-white transition-colors text-lg"
               onClick={() => {
-                reset(); // Reset the form fields
-                setClassification(""); // Clear the classification
-                setExamples([]); // Clear the examples
+                reset();
+                setClassification("");
+                setExamples([]);
               }}
             >
               Re-classify
@@ -122,13 +143,13 @@ export function InputDemo() {
     );
   }
 
-  // Render the input form if no classification exists
   return (
     <div className="min-h-screen bg-blue-50 text-gray-900 flex flex-col justify-center">
       <Navbar />
       <div className="flex flex-col items-center justify-center px-4 py-20">
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full border border-blue-200">
-          <h1 className="text-2xl font-semibold text-center mb-6 text-blue-700">Enter your text</h1>
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-xl w-full border border-blue-200">
+          <h1 className="text-2xl font-semibold text-center mb-6 text-black">Enter Your Content</h1>
+          <p className="text-sm text-slate-500 my-6 text-center">We utilize cutting-edge AI techniques to find simulated classified data similar to your input to make an informed classification decision.</p>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
@@ -136,7 +157,6 @@ export function InputDemo() {
                 name="textInput"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-blue-700">Input Text</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -155,33 +175,13 @@ export function InputDemo() {
                   Classify
                 </Button>
               </div>
-              {classification && <h2 className="text-2xl text-center pt-4">{classification}</h2>}
-              <div className="flex flex-col space-y-4 justify-center items-center">
-                {classification && <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="w-fit bg-transparent text-black hover:bg-transparent shadow-none transition-colors text-sm underline-offset-4 underline font-semibold">View Reasoning</Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px] bg-white text-black">
-                    <DialogHeader>
-                      <DialogTitle>View Reasoning</DialogTitle>
-                      <DialogDescription className="bg-white">
-                        Sample data that inspired our decision
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="font-light">
-                    {examples.map((example, index) => (
-                      <p key={index} className="text-sm">{example}</p>
-                    ))}
-                    </div>
-                  </DialogContent>
-                </Dialog>}
-              </div>
             </form>
           </Form>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default InputDemo;
+// Use default export to match Next.js page requirements
+export default Page;

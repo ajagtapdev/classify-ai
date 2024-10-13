@@ -61,7 +61,7 @@ const ContactForm = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-indigo-100">
       <Navbar />
-      <div className="max-w-4xl mx-auto px-8 py-12">
+      <div className="max-w-4xl mx-auto px-8 py-24">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
