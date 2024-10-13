@@ -5,6 +5,10 @@ import "./globals.css";
 export const metadata = {
   title: "Classify",
   description: "Classify.ai",
+  icons: {
+  icon: "/icon.ico",
+  },
+ 
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
