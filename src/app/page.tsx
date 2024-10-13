@@ -71,19 +71,19 @@ const Page = () => {
               <FeatureCard 
                 icon={Shield}
                 title="Secure and Reliable"
-                description="Built with government-grade security protocols"
+                description="Built with government-grade security protocols."
                 content="Ensure the safety and integrity of classified data through our advanced AI solutions."
               />
               <FeatureCard 
                 icon={Clipboard}
                 title="Efficient Classification"
-                description="Streamlined processes for quick and accurate results"
+                description="Streamlined processes for quick and accurate results."
                 content="Optimize your data management with state-of-the-art AI classification tools."
               />
               <FeatureCard 
                 icon={Headset}
                 title="Customer Support"
-                description="Dedicated customer support for government agencies"
+                description="Dedicated customer support for government agencies."
                 content="Our experienced team is available around the clock to assist with your needs."
               />
             </div>
