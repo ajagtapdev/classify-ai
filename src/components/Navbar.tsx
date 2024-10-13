@@ -36,7 +36,12 @@ const Navbar = () => {
                     <nav className="hidden md:flex items-center space-x-6 font-medium text-base">
                     
                     </nav>
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2">
+                        <Link href="/contact" passHref>
+                                <button className="px-4 py-2 text-black rounded hover:text-blue-700 transition duration-300">
+                                    Contact
+                                </button>
+                        </Link>
                         <SignedOut>
                             <Link href="/auth/sign-in" passHref>
                                 <button className="px-4 py-2 bg-black text-white rounded hover:bg-blue-700 transition duration-300">
@@ -46,7 +51,7 @@ const Navbar = () => {
                         </SignedOut>
                         <SignedIn>
                             {renderLink("Classify", "/classifier")}
-                            <span className="flex items-center text-black font-medium">
+                            <span className="flex items-center text-black font-medium pl-6">
                                 <UserButton />
                             </span>
                         </SignedIn>

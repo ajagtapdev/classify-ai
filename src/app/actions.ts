@@ -31,6 +31,7 @@ export const classifyText = async (text: string) => {
         model: "gpt-4o-mini",
         messages: [{ role: "user", content: prompt }],
     });
+    
 
     return {response: response.choices[0].message.content, examples: examples}
 
