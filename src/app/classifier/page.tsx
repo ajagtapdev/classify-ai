@@ -3,11 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -28,25 +28,36 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useUser } from "@clerk/nextjs"; 
+import { useRouter } from "next/navigation"; 
 
 // Define the form schema using Zod
 const formSchema = z.object({
-  textInput: z.string().min(1, {
-    message: "Please enter an input",
-  }).max(200, {
-    message: "You cannot enter more than 200 characters",
-  }).regex(/^[a-zA-Z0-9 ]*$/, {
-    message: "Only alphanumeric characters are allowed.",
-  }),
+  textInput: z
+    .string()
+    .min(1, { message: "Please enter an input" })
+    .max(200, { message: "You cannot enter more than 200 characters" })
+    .regex(/^[a-zA-Z0-9 ]*$/, { message: "Only alphanumeric characters are allowed." }),
 });
 
 export function InputDemo() {
+  const { isSignedIn } = useUser(); 
+  const router = useRouter(); 
+
+  // Redirect to /sign-in if the user is not signed in
+  useEffect(() => {
+    if (!isSignedIn) {
+      router.push("/auth/sign-in");
+    }
+  }, [isSignedIn, router]);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       textInput: "",
     },
   });
+
   const { reset } = form; // Use the reset function from react-hook-form
   const [loading, setLoading] = useState(false);
   const [classification, setClassification] = useState("");
