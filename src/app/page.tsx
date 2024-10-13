@@ -74,7 +74,7 @@ const Page = () => {
               />
               <FeatureCard 
                 icon={Headset}
-                title="24/7 Support"
+                title="Customer Support"
                 description="Dedicated customer support for government agencies"
                 content="Our experienced team is available around the clock to assist with your needs."
               />
@@ -88,6 +88,17 @@ const Page = () => {
               <p className="text-xl mb-8">
                 Join Classify.ai to simplify and handle sensitive document management needs with ease.
               </p>
+              <SignedIn>
+              <Button 
+                asChild 
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-10 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl text-lg"
+              >
+                <Link href="/classifier" className="flex items-center">
+                  Get Started Today <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
+              </SignedIn>
+              <SignedOut>
               <Button 
                 asChild 
                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-10 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl text-lg"
@@ -96,6 +107,7 @@ const Page = () => {
                   Get Started Today <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
+              </SignedOut>
             </div>
           </section>
         </div>
