@@ -3,12 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,32 +17,43 @@ import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import { classifyText } from "../actions";
 import { PropagateLoader } from "react-spinners";
+import { useUser } from "@clerk/nextjs"; // Import useUser from Clerk
+import { useRouter } from "next/navigation"; // Import useRouter from Next.js
 
 const formSchema = z.object({
-  textInput: z.string().min(1, {
-    message: "Please enter an input",
-  }).max(200, {
-    message: "You cannot enter more than 200 characters",
-  }).regex(/^[a-zA-Z0-9 ]*$/, {
-    message: "Only alphanumeric characters are allowed.",
-  }),
+  textInput: z
+    .string()
+    .min(1, { message: "Please enter an input" })
+    .max(200, { message: "You cannot enter more than 200 characters" })
+    .regex(/^[a-zA-Z0-9 ]*$/, { message: "Only alphanumeric characters are allowed." }),
 });
 
 export function InputDemo() {
+  const { isSignedIn } = useUser(); 
+  const router = useRouter(); 
+
+  // Redirect to /sign-in if the user is not signed in
+  useEffect(() => {
+    if (!isSignedIn) {
+      router.push("/auth/sign-in");
+    }
+  }, [isSignedIn, router]);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       textInput: "",
     },
   });
+
   const [loading, setLoading] = useState(false);
-  const [classification, setClassification] = useState("")
+  const [classification, setClassification] = useState("");
 
   const onSubmit = async (values: { textInput: string }) => {
-    setLoading(true)
+    setLoading(true);
     const response = await classifyText(values.textInput.trim());
     setClassification(response as string);
-    setLoading(false)
+    setLoading(false);
   };
 
   if (loading) {
@@ -51,10 +61,10 @@ export function InputDemo() {
       <div className="min-h-screen bg-blue-50 text-gray-900 flex flex-col items-center">
         <Navbar />
         <div className="pt-96 flex flex-col items-center">
-          <PropagateLoader color="#008ae6"/>
+          <PropagateLoader color="#008ae6" />
         </div>
       </div>
-    )
+    );
   }
 
   return (
