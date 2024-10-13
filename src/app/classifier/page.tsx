@@ -17,8 +17,8 @@ import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import { classifyText } from "../actions";
 import { PropagateLoader } from "react-spinners";
-import { useUser } from "@clerk/nextjs"; // Import useUser from Clerk
-import { useRouter } from "next/navigation"; // Import useRouter from Next.js
+import { useUser } from "@clerk/nextjs"; 
+import { useRouter } from "next/navigation"; 
 
 const formSchema = z.object({
   textInput: z
