@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -22,12 +21,10 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { useUser } from "@clerk/nextjs"; 
 import { useRouter } from "next/navigation"; 
 
@@ -171,9 +168,11 @@ export function InputDemo() {
                         Sample data that inspired our decision
                       </DialogDescription>
                     </DialogHeader>
+                    <div className="font-light">
                     {examples.map((example, index) => (
-                      <h2 key={index} className="text-sm">{example}</h2>
+                      <p key={index} className="text-sm">{example}</p>
                     ))}
+                    </div>
                   </DialogContent>
                 </Dialog>}
               </div>

@@ -21,8 +21,6 @@ const Page = () => {
       <Navbar />
       <main className="flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Welcome Section */}
           <section className="pb-24 pt-40 text-center">
             <h2 className="text-5xl mb-6 text-blue-900 animate-fade-in-down">
               Welcome to <span className="text-blue-600">Classify.ai</span>
