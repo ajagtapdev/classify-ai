@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">About Us</h4>
             <p className="text-gray-400">
-              Classify.ai is the leading AI-driven solution for government document classification.
+              Classify.ai is an AI-driven solution for government document classification.
             </p>
           </div>
 
