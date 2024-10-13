@@ -59,7 +59,6 @@ yarn dev
   <li><code>/api/contact</code>: Sends a message to the team using emailJS.</li>
 </ul>
 
-
 <h2 id="license">License</h2>
 <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more details.</p>
 
