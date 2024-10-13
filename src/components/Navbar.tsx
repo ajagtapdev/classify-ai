@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link key={name} href={href} passHref>
             <span
                 className={clsx(
-                    "relative flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-300 cursor-pointer",
+                    "relative flex items-center text-black hover:text-blue-800 transition-colors duration-300 cursor-pointer",
                     { "text-blue-800": pathname === href }
                 )}
             >
@@ -29,7 +29,7 @@ const Navbar = () => {
             <div className="container mx-auto px-4 py-2 md:px-6 md:py-3">
                 <div className="flex items-center justify-between">
                     <Link href="/" passHref>
-                        <span className="text-xl font-semibold text-blue-700 cursor-pointer text-underline">
+                        <span className="text-xl font-semibold text-black cursor-pointer text-underline">
                             Classify.ai
                         </span>
                     </Link>
@@ -39,14 +39,14 @@ const Navbar = () => {
                     <div className="flex items-center space-x-4">
                         <SignedOut>
                             <Link href="/auth/sign-in" passHref>
-                                <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">
+                                <button className="px-4 py-2 bg-black text-white rounded hover:bg-blue-700 transition duration-300">
                                     Sign In
                                 </button>
                             </Link>
                         </SignedOut>
                         <SignedIn>
                             {renderLink("Classify", "/classifier")}
-                            <span className="flex items-center text-blue-600 font-medium">
+                            <span className="flex items-center text-black font-medium">
                                 <UserButton />
                             </span>
                         </SignedIn>
