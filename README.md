@@ -1,4 +1,4 @@
-<h1>Classify.ai - Government Document Classification</h1>
+<h1>Classify.ai - Government Document Classification</h1> 
 
 <p>Classify.ai is an AI-powered solution built to streamline and automate the classification of government documents. The application is built using <strong>Next.js</strong> for the frontend, integrated with <strong>Clerk</strong> for authentication, and leverages <strong>emailJS</strong> for communication. This repository contains the source code for the frontend, backend integration, and components required to classify documents with AI-driven text processing.</p>
 
